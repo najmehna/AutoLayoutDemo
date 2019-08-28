@@ -10,13 +10,14 @@ import Foundation
 import FirebaseAuth
 
 class FirebaseAuthManager {
-    static func createUser(email: String, password: String, completionBlock: @escaping (_ success: Bool) -> Void) {
+    static func createUser(email: String, password: String, completionBlock: @escaping (_ success: Bool, _ error: String?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) {(authResult, error) in
             if let user = authResult?.user {
                 print(user)
-                completionBlock(true)
+                completionBlock(true, nil)
             } else {
-                completionBlock(false)
+                let errormsg = error?.localizedDescription
+                completionBlock(false, errormsg)
             }
         }
     }

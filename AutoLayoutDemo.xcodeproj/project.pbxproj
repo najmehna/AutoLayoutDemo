@@ -16,6 +16,7 @@
 		F3BB1E5A230EF33B00FE4CEE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3BB1E59230EF33B00FE4CEE /* GoogleService-Info.plist */; };
 		F3BB1E632314263C00FE4CEE /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BB1E622314263C00FE4CEE /* RegisterViewController.swift */; };
 		F3EA4DA42316D08E000F5DA8 /* FireBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EA4DA32316D08E000F5DA8 /* FireBase.swift */; };
+		F3EA4DA623171306000F5DA8 /* ValidateFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EA4DA523171306000F5DA8 /* ValidateFuncs.swift */; };
 		F3F43714230D8F9100B7B349 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F43713230D8F9100B7B349 /* LoginViewController.swift */; };
 		F3F43716230DA3EB00B7B349 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F43715230DA3EB00B7B349 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
@@ -35,6 +36,7 @@
 		F3BB1E5B230EF48400FE4CEE /* Private */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Private; path = Pods/FirebaseCore/Firebase/Core/Private; sourceTree = "<group>"; };
 		F3BB1E622314263C00FE4CEE /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F3EA4DA32316D08E000F5DA8 /* FireBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBase.swift; sourceTree = "<group>"; };
+		F3EA4DA523171306000F5DA8 /* ValidateFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateFuncs.swift; sourceTree = "<group>"; };
 		F3F43713230D8F9100B7B349 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F3F43715230DA3EB00B7B349 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				F3EA4DA32316D08E000F5DA8 /* FireBase.swift */,
+				F3EA4DA523171306000F5DA8 /* ValidateFuncs.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				F38C8857230C570F00721152 /* AppDelegate.swift in Sources */,
 				F3EA4DA42316D08E000F5DA8 /* FireBase.swift in Sources */,
 				F3F43716230DA3EB00B7B349 /* MapViewController.swift in Sources */,
+				F3EA4DA623171306000F5DA8 /* ValidateFuncs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

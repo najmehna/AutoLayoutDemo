@@ -46,13 +46,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     func addUserToFirebase(){
         //let signUpManager = FirebaseAuthManager()
         if let email = emailTextField.text, let password = passwordTextField.text {
-            FirebaseAuthManager.createUser(email: email, password: password) {[weak self] (success) in
+            FirebaseAuthManager.createUser(email: email, password: password) {[weak self] (success, error) in
                 guard let `self` = self else { return }
                 var message: String = ""
                 if (success) {
                     message = "User was sucessfully created."
                 } else {
-                    message = "There was an error."
+                    message = error!
                 }
                  self.showCorrectionAlert(message)
             }
@@ -99,41 +99,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    
-    func validatePassword(inputText: String) -> Bool{
-        var result = true
-        if inputText.count > 7 , inputText.count < 17 {
-        let emailRegExp = "[A-Z0-9a-z.-_]+"
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegExp)
-        result = emailPred.evaluate(with: inputText)
-        } else {result = false}
-        return result
-    }
-    
-    func validateEmail(inputText: String) -> Bool{
-        let emailRegExp = "[A-Z0-9a-z.-_]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}"
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegExp)
-        let result = emailPred.evaluate(with: inputText)
-        return result
-    }
-    
-    func validateFirstName(inputText: String) -> Bool{
-        let emailRegExp = "[A-Za-z]+"
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegExp)
-        return emailPred.evaluate(with: inputText)
-    }
-    
-    func validateLastName(inputText: String) -> Bool{
-        let emailRegExp = "[A-Za-z]+"
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegExp)
-        return emailPred.evaluate(with: inputText)
-    }
-    
-    func validatePhoneNumber(inputText: String) -> Bool{
-          return inputText.count == 10
-    }
    
-    
     func showCorrectionAlert(_ message: String){
         let myAlert = UIAlertController(title: "Checking the input fields", message: message, preferredStyle: .alert)
         let myAction = UIAlertAction(title: "OK", style: .default, handler: nil)
