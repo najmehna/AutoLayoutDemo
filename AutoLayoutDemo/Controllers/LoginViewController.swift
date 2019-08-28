@@ -27,12 +27,12 @@ class LoginViewController: UIViewController {
     @IBAction func signInBtnClicked(_ sender: UIButton) {
        let userName = userNameTextField.text!
         let password = passwordTextField.text!
-        Auth.auth().signIn(withEmail: userName, password: password){
-            [weak self] user, error in
-            guard let strongself = self else{return}
-            if let myuser = user{
-                print("Login success for \(myuser)")
-                self?.performSegue(withIdentifier: "goToHomePage", sender: self)
+        FirebaseAuthManager.signIn(userName: userName, password: password){
+            [weak self] (result) in
+            guard let `self` = self else{return}
+            if result{
+                print("Login success for \(userName)")
+                self.performSegue(withIdentifier: "goToHomePage", sender: self)
             }else {
                 print("Login failed for \(userName)")
                 return
