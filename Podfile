@@ -9,6 +9,8 @@ target 'AutoLayoutDemo' do
     pod 'GoogleMaps'
     pod 'GooglePlaces'
     pod 'Firebase/Analytics'
+    pod 'Firebase/Storage'
+    pod 'Firebase/Database'
     pod 'Firebase/Auth'
 
 end
