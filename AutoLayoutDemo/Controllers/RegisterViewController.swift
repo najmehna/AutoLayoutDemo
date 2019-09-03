@@ -25,6 +25,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var LastNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
+    @IBOutlet weak var genderSwitch: UISwitch!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBAction func registerButtonclicked(_ sender: UIButton) {
         allFieldsAreOkay = true
@@ -40,9 +41,19 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         if allFieldsAreOkay{
             //showCorrectionAlert("All fields are Okay")
             addUserToFirebase()
+            
         }
     }
-    
+    func createsignUpDict() -> [String: Any]{
+        var myDict : [String: Any] = [:]
+        let name = firstNameTextField.text! + " " + LastNameTextField.text!
+        myDict = ["name": name]
+        myDict = ["phoneNumber" : phoneNumberTextField.text!]
+        let gender = genderSwitch.isOn
+        myDict = ["gender" : gender]
+        
+        return myDict
+    }
     func addUserToFirebase(){
         //let signUpManager = FirebaseAuthManager()
         if let email = emailTextField.text, let password = passwordTextField.text {
@@ -51,6 +62,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                 var message: String = ""
                 if (success) {
                     message = "User was sucessfully created."
+                    let myDict = self.createsignUpDict()
+                    FirebaseAuthManager.addUserDetails(dataDict:myDict)
+                    
                 } else {
                     message = error!
                 }

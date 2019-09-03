@@ -7,10 +7,14 @@
 //
 
 import Foundation
+import UIKit
 
 struct Profile{
     var name: String
-    var image: String
+    var image: UIImage
     
-    
+    init(myname: String, myimage: UIImage){
+        name = myname
+        image = myimage
+    }
 }
