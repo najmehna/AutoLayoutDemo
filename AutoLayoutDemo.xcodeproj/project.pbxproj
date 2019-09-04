@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		13C7ECB7E2AD6497F4DEB345 /* Pods_AutoLayoutDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB38D396DA3E2ABC555559BD /* Pods_AutoLayoutDemo.framework */; };
 		F38C8857230C570F00721152 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C8856230C570F00721152 /* AppDelegate.swift */; };
-		F38C8859230C570F00721152 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C8858230C570F00721152 /* ViewController.swift */; };
+		F38C8859230C570F00721152 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38C8858230C570F00721152 /* HomeViewController.swift */; };
 		F38C885C230C570F00721152 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38C885A230C570F00721152 /* Main.storyboard */; };
 		F38C885E230C571200721152 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F38C885D230C571200721152 /* Assets.xcassets */; };
 		F38C8861230C571200721152 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38C885F230C571200721152 /* LaunchScreen.storyboard */; };
@@ -20,7 +20,7 @@
 		F3EA4DA82318169D000F5DA8 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EA4DA72318169D000F5DA8 /* UploadViewController.swift */; };
 		F3EA4DCD23183F85000F5DA8 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EA4DCC23183F85000F5DA8 /* CustomTableViewCell.swift */; };
 		F3EA4DCF231840D1000F5DA8 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EA4DCE231840D1000F5DA8 /* Profile.swift */; };
-		F3EA4DD3231842E8000F5DA8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EA4DD2231842E8000F5DA8 /* HomeViewController.swift */; };
+		F3EA4DD3231842E8000F5DA8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EA4DD2231842E8000F5DA8 /* ProfileViewController.swift */; };
 		F3F43714230D8F9100B7B349 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F43713230D8F9100B7B349 /* LoginViewController.swift */; };
 		F3F43716230DA3EB00B7B349 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F43715230DA3EB00B7B349 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
@@ -31,7 +31,7 @@
 		E44BCBA29BC29DDA93F8B802 /* Pods-AutoLayoutDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoLayoutDemo.debug.xcconfig"; path = "Target Support Files/Pods-AutoLayoutDemo/Pods-AutoLayoutDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		F38C8853230C570F00721152 /* AutoLayoutDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoLayoutDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F38C8856230C570F00721152 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F38C8858230C570F00721152 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F38C8858230C570F00721152 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F38C885B230C570F00721152 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F38C885D230C571200721152 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F38C8860230C571200721152 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -44,7 +44,7 @@
 		F3EA4DA72318169D000F5DA8 /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		F3EA4DCC23183F85000F5DA8 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		F3EA4DCE231840D1000F5DA8 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		F3EA4DD2231842E8000F5DA8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F3EA4DD2231842E8000F5DA8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F3F43713230D8F9100B7B349 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F3F43715230DA3EB00B7B349 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,12 +118,12 @@
 			isa = PBXGroup;
 			children = (
 				F3EA4DCB23183F58000F5DA8 /* TabelCellControllers */,
-				F38C8858230C570F00721152 /* ViewController.swift */,
+				F38C8858230C570F00721152 /* HomeViewController.swift */,
 				F3F43713230D8F9100B7B349 /* LoginViewController.swift */,
 				F3F43715230DA3EB00B7B349 /* MapViewController.swift */,
 				F3BB1E622314263C00FE4CEE /* RegisterViewController.swift */,
 				F3EA4DA72318169D000F5DA8 /* UploadViewController.swift */,
-				F3EA4DD2231842E8000F5DA8 /* HomeViewController.swift */,
+				F3EA4DD2231842E8000F5DA8 /* ProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -299,9 +299,9 @@
 				F3F43714230D8F9100B7B349 /* LoginViewController.swift in Sources */,
 				F3EA4DA82318169D000F5DA8 /* UploadViewController.swift in Sources */,
 				F3BB1E632314263C00FE4CEE /* RegisterViewController.swift in Sources */,
-				F38C8859230C570F00721152 /* ViewController.swift in Sources */,
+				F38C8859230C570F00721152 /* HomeViewController.swift in Sources */,
 				F38C8857230C570F00721152 /* AppDelegate.swift in Sources */,
-				F3EA4DD3231842E8000F5DA8 /* HomeViewController.swift in Sources */,
+				F3EA4DD3231842E8000F5DA8 /* ProfileViewController.swift in Sources */,
 				F3EA4DA42316D08E000F5DA8 /* FireBase.swift in Sources */,
 				F3F43716230DA3EB00B7B349 /* MapViewController.swift in Sources */,
 				F3EA4DA623171306000F5DA8 /* ValidateFuncs.swift in Sources */,

@@ -10,6 +10,9 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var phoneLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileLabel: UILabel!
     override func awakeFromNib() {
@@ -18,8 +21,11 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     func setValues(profile: Profile){
-        profileImageView.image = profile.image
+        profileImageView.image = UIImage(named: "pinkBackground")
         profileLabel.text = profile.name
+        emailLabel.text = profile.email
+        phoneLabel.text = profile.phone
+        genderLabel.text = profile.gender ? "Female" : "Male"
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

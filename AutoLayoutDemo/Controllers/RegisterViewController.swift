@@ -47,24 +47,24 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     func createsignUpDict() -> [String: Any]{
         var myDict : [String: Any] = [:]
         let name = firstNameTextField.text! + " " + LastNameTextField.text!
-        myDict = ["name": name]
-        myDict = ["phoneNumber" : phoneNumberTextField.text!]
         let gender = genderSwitch.isOn
-        myDict = ["gender" : gender]
+        myDict = ["name": name,"phoneNumber" : phoneNumberTextField.text!,"gender" : gender, "email" : emailTextField.text!]
         
         return myDict
     }
     func addUserToFirebase(){
-        //let signUpManager = FirebaseAuthManager()
+        let signUpManager = FirebaseAuthManager()
         if let email = emailTextField.text, let password = passwordTextField.text {
-            FirebaseAuthManager.createUser(email: email, password: password) {[weak self] (success, error) in
+            signUpManager.createUser(email: email, password: password) {[weak self] (success, error) in
                 guard let `self` = self else { return }
                 var message: String = ""
                 if (success) {
-                    message = "User was sucessfully created."
                     let myDict = self.createsignUpDict()
-                    FirebaseAuthManager.addUserDetails(dataDict:myDict)
-                    
+                    signUpManager.addUserDetails(dataDict:myDict)
+                    message = "User was sucessfully created."
+                    UserDefaults.standard.set(self.emailTextField.text!, forKey: "username")
+                    UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                    self.performSegue(withIdentifier: "goToHomePage", sender: self)
                 } else {
                     message = error!
                 }

@@ -55,6 +55,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func signInBtnClicked(_ sender: UIButton) {
+        let myManager = FirebaseAuthManager()
         allFieldsAreOkay = true
         textFieldDidEndEditing(userNameTextField)
         textFieldDidEndEditing(passwordTextField)
@@ -62,13 +63,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let userName = userNameTextField.text!
             let password = passwordTextField.text!
             DispatchQueue.global(qos: .userInteractive).async {
-                FirebaseAuthManager.signIn(userName: userName, password: password){
+                myManager.signIn(userName: userName, password: password){
                     [weak self] (result) in
                     guard let `self` = self else{return}
                     if result{
                         print("Login success for \(userName)")
                         self.userNameTextField.resignFirstResponder()
                         self.passwordTextField.resignFirstResponder()
+                        UserDefaults.standard.set(self.userNameTextField.text!, forKey: "username")
+                        UserDefaults.standard.set(true, forKey: "isLoggedIn")
                         self.performSegue(withIdentifier: "goToHomePage", sender: self)
                     }else {
                         self.showAlert("Log In failed for \(userName)")

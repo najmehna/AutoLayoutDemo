@@ -21,7 +21,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey(googleAPIKey)
         FirebaseApp.configure()
         // Override point for customization after application launch.
-        return true
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        if UserDefaults.standard.bool(forKey: "isLoggedIn"){
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MainTabbarController") as! UITabBarController
+            window?.rootViewController = nextViewController
+            
+        } else{
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            window?.rootViewController = nextViewController
+        }
+         return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

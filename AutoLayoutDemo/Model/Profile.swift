@@ -11,10 +11,13 @@ import UIKit
 
 struct Profile{
     var name: String
-    var image: UIImage
+    var email: String
+    var phone: String
+    var gender: Bool
+    //var image: UIImage
     
-    init(myname: String, myimage: UIImage){
-        name = myname
-        image = myimage
-    }
+//    init(myname: String, myemail: String, myphone: String, mygender: Bool){
+//        name = myname
+//       // image = myimage
+//    }
 }
