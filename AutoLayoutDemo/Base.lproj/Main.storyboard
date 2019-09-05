@@ -202,7 +202,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCe-BT-7Z6">
-                                <rect key="frame" x="16" y="481" width="288" height="30"/>
+                                <rect key="frame" x="16" y="481" width="138" height="30"/>
                                 <state key="normal" title="Upload"/>
                                 <connections>
                                     <action selector="uploadBtnClicked:" destination="igL-0J-kIV" eventType="touchUpInside" id="n1h-JR-RRW"/>
@@ -243,10 +243,20 @@
                                     <constraint firstItem="BQJ-Eh-FIl" firstAttribute="top" secondItem="lub-Vh-5Ya" secondAttribute="top" constant="8" id="aQW-vq-mxN"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghz-Sc-YJD">
+                                <rect key="frame" x="166" y="481" width="138" height="30"/>
+                                <state key="normal" title="Update"/>
+                                <connections>
+                                    <action selector="UpdateButtonClicked:" destination="igL-0J-kIV" eventType="touchUpInside" id="xDQ-Dj-o3a"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Ghz-Sc-YJD" firstAttribute="leading" secondItem="cCe-BT-7Z6" secondAttribute="trailing" constant="12" id="1GO-s2-RNt"/>
                             <constraint firstItem="TnG-ez-unL" firstAttribute="leading" secondItem="im7-5L-NeJ" secondAttribute="leading" constant="16" id="2uh-29-XMT"/>
+                            <constraint firstItem="Ghz-Sc-YJD" firstAttribute="top" secondItem="lub-Vh-5Ya" secondAttribute="bottom" constant="8" id="5nm-Ba-sNZ"/>
+                            <constraint firstItem="Ghz-Sc-YJD" firstAttribute="width" secondItem="cCe-BT-7Z6" secondAttribute="width" id="8Dn-2r-YMS"/>
                             <constraint firstItem="im7-5L-NeJ" firstAttribute="trailing" secondItem="TnG-ez-unL" secondAttribute="trailing" constant="16" id="FXI-yc-4Xb"/>
                             <constraint firstItem="TnG-ez-unL" firstAttribute="height" secondItem="1Wm-od-sS9" secondAttribute="height" multiplier="0.4" id="Fj9-pY-3Ky"/>
                             <constraint firstItem="xmM-30-61G" firstAttribute="top" secondItem="im7-5L-NeJ" secondAttribute="top" id="H3N-vB-JYu"/>
@@ -259,9 +269,10 @@
                             <constraint firstItem="TnG-ez-unL" firstAttribute="top" secondItem="xmM-30-61G" secondAttribute="bottom" constant="8" id="WuR-Si-s3x"/>
                             <constraint firstItem="lub-Vh-5Ya" firstAttribute="top" secondItem="TnG-ez-unL" secondAttribute="bottom" constant="8" id="Zl3-5O-jub"/>
                             <constraint firstItem="cCe-BT-7Z6" firstAttribute="leading" secondItem="im7-5L-NeJ" secondAttribute="leading" constant="16" id="a1S-Xt-rx7"/>
+                            <constraint firstItem="im7-5L-NeJ" firstAttribute="trailing" secondItem="Ghz-Sc-YJD" secondAttribute="trailing" constant="16" id="cLO-q7-Jj9"/>
                             <constraint firstItem="1Wm-od-sS9" firstAttribute="leading" secondItem="im7-5L-NeJ" secondAttribute="leading" id="fgY-hM-QYS"/>
-                            <constraint firstItem="im7-5L-NeJ" firstAttribute="trailing" secondItem="cCe-BT-7Z6" secondAttribute="trailing" constant="16" id="hy6-DR-O8E"/>
                             <constraint firstItem="1Wm-od-sS9" firstAttribute="top" secondItem="Jll-JL-FDR" secondAttribute="top" id="i9T-2y-BFG"/>
+                            <constraint firstItem="im7-5L-NeJ" firstAttribute="bottom" secondItem="Ghz-Sc-YJD" secondAttribute="bottom" constant="8" id="jDd-AG-9DQ"/>
                             <constraint firstItem="im7-5L-NeJ" firstAttribute="trailing" secondItem="lub-Vh-5Ya" secondAttribute="trailing" constant="16" id="o46-4J-mOl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="im7-5L-NeJ"/>

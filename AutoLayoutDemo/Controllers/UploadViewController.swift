@@ -12,6 +12,25 @@ import MobileCoreServices
 
 class UploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
     
+    @IBAction func UpdateButtonClicked(_ sender: UIButton) {
+       
+        if validateInput(){
+            let myDataManager = FirebaseAuthManager()
+            let myDict = createDataDict()
+            myDataManager.updateCourseDetails(dataDict: myDict){
+               success in
+
+            }
+            let myAlert = UIAlertController(title: "Updating the database", message: "Data added", preferredStyle: .alert)
+            let myAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            myAlert.addAction(myAction)
+            present(myAlert, animated: true, completion: {
+                self.clearFields()
+            })
+        } else{
+            showAlert("Please do not leave any fields empty.")
+        }
+    }
     @IBOutlet weak var uploadImageView: UIImageView!
     @IBOutlet weak var uploadButton: UIButton!
     @IBOutlet weak var courseTextField: UITextField!

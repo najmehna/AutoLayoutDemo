@@ -32,6 +32,31 @@ class FirebaseAuthManager {
     func addCourseDetails(dataDict: [String:Any])-> Void{
         self.ref.child("courses").childByAutoId().setValue(dataDict)
     }
+    
+    func updateCourseDetails(dataDict: [String:Any], completionBlock: @escaping (_ success: Bool)->Void){
+//        guard let key = ref.child("courses").childByAutoId().key else { return }
+//        let childUpdates = ["/courses/\(key)": dataDict]
+//        ref.updateChildValues(childUpdates)
+//        print("The firebase key is \(key)")
+        
+        self.ref.child("courses").queryOrdered(byChild: "courseName").queryEqual(toValue: dataDict["courseName"]).observeSingleEvent(of: .value) { (snapShot) in
+            if let snap = snapShot.value as? [String:Any]{
+                for each in snap{
+                    let key = each.key
+                    let name = each.value as! [String:Any]
+                    print(name)
+                    print("The key is :\(key)")
+                }
+            }
+        }
+    }
+    func deleteCourse(dataDict: [String:Any],completionBlock: @escaping (_ success: Bool)->Void){
+        
+    }
+    
+    func deleteProfile(dataDict: [String:Any],completionBlock: @escaping (_ success: Bool)->Void){
+        
+    }
     func signIn(userName: String , password:String, completionBlock: @escaping (_ success: Bool)-> Void){
         Auth.auth().signIn(withEmail: userName, password: password){(authResult, error)
             in

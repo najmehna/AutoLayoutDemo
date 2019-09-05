@@ -58,6 +58,31 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         return myCell
     }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            let myManager = FirebaseAuthManager()
+            if tableView.cellForRow(at: indexPath) is CustomTableViewCell{
+                myManager.deleteProfile(dataDict: profiles[indexPath.row / 2].getDict()) { success in
+                    if success{
+                        print("Item deleted in firebase")
+                        self.profiles.remove(at: indexPath.row / 2)
+                    }else{
+                        print("failed to delete item in firebase")
+                    }
+                }
+            }else{
+                myManager.deleteCourse(dataDict: profiles[indexPath.row / 2].getDict()) { success in
+                    if success{
+                        print("Item deleted in firebase")
+                        self.courses.remove(at: indexPath.row / 2)
+                    }else{
+                        print("failed to delete item in firebase")
+                    }
+                }
+            }
+            profileTableView.reloadData()
+        }
+    }
     func loadProfiles(){
         let myManager = FirebaseAuthManager()
         var myCell = Profile(name: "",email: "",phone: "", gender: true)
