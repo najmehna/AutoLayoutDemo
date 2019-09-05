@@ -12,7 +12,7 @@ import Firebase
 
 class FirebaseAuthManager {
     var ref : DatabaseReference! = Database.database().reference()
-    let uuid = UUID().uuidString
+    //let uuid = UUID().uuidString
     
     func createUser(email: String, password: String, completionBlock: @escaping (_ success: Bool, _ error: String?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) {(authResult, error) in
@@ -43,29 +43,26 @@ class FirebaseAuthManager {
             }
         }
     }
-    
-    func getData() -> [String: Any]{
-       // let uid = Auth.auth().currentUser?.uid
-        var postDict : [String : Any] = [:]
-        func setpostDict(dict: [String: Any]){
-            postDict = dict
-        }
-        ref.child("users").observe(DataEventType.value, with: { (snapshot) in
-            setpostDict(dict: snapshot.value as? [String : Any] ?? [:])
-           // completionBlock(true)
-           // print(postDict)
-        })
-        { (error) in
-            print(error.localizedDescription)
-            //completionBlock(false)
-        }
-    return postDict
-    }
+
     func getUsersData(completionBlock:@escaping (_ success: Bool, _ snapshot: [String:Any])->Void){
         // let uid = Auth.auth().currentUser?.uid
         var postDict : [String : Any] = [:]
 
         ref.child("users").observe(DataEventType.value, with: { (snapshot) in
+            postDict = snapshot.value as? [String : Any] ?? [:]
+            completionBlock(true,postDict)
+            // print(postDict)
+        })
+        { (error) in
+            print(error.localizedDescription)
+            completionBlock(false, postDict)
+        }
+    }
+    func getCoursesData(completionBlock:@escaping (_ success: Bool, _ snapshot: [String:Any])->Void){
+        // let uid = Auth.auth().currentUser?.uid
+        var postDict : [String : Any] = [:]
+        
+        ref.child("courses").observe(DataEventType.value, with: { (snapshot) in
             postDict = snapshot.value as? [String : Any] ?? [:]
             completionBlock(true,postDict)
             // print(postDict)

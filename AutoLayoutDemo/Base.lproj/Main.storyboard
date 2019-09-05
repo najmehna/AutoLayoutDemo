@@ -217,16 +217,14 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Credits" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rMz-tg-JrT">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Credits" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rMz-tg-JrT">
                                         <rect key="frame" x="8" y="46" width="272" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Final Mark" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p4l-0W-YkQ">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Final Mark" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p4l-0W-YkQ">
                                         <rect key="frame" x="8" y="84" width="272" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -234,8 +232,14 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="p4l-0W-YkQ" secondAttribute="trailing" constant="8" id="8GV-bB-1dE"/>
                                     <constraint firstItem="BQJ-Eh-FIl" firstAttribute="leading" secondItem="lub-Vh-5Ya" secondAttribute="leading" constant="8" id="AaR-QI-UXS"/>
+                                    <constraint firstItem="rMz-tg-JrT" firstAttribute="leading" secondItem="lub-Vh-5Ya" secondAttribute="leading" constant="8" id="B4X-nG-E3z"/>
+                                    <constraint firstItem="p4l-0W-YkQ" firstAttribute="top" secondItem="rMz-tg-JrT" secondAttribute="bottom" constant="8" id="H8T-tS-sBE"/>
+                                    <constraint firstItem="p4l-0W-YkQ" firstAttribute="leading" secondItem="lub-Vh-5Ya" secondAttribute="leading" constant="8" id="OVE-3w-ft4"/>
+                                    <constraint firstAttribute="trailing" secondItem="rMz-tg-JrT" secondAttribute="trailing" constant="8" id="PDr-dy-ues"/>
                                     <constraint firstAttribute="trailing" secondItem="BQJ-Eh-FIl" secondAttribute="trailing" constant="8" id="Q1N-Iq-XDF"/>
+                                    <constraint firstItem="rMz-tg-JrT" firstAttribute="top" secondItem="BQJ-Eh-FIl" secondAttribute="bottom" constant="8" id="aCb-1R-R6U"/>
                                     <constraint firstItem="BQJ-Eh-FIl" firstAttribute="top" secondItem="lub-Vh-5Ya" secondAttribute="top" constant="8" id="aQW-vq-mxN"/>
                                 </constraints>
                             </view>
@@ -354,6 +358,49 @@
                                             <outlet property="phoneLabel" destination="f5r-zF-ggE" id="Ueg-IP-V3r"/>
                                             <outlet property="profileImageView" destination="mKa-0h-R6z" id="uKc-Ax-PKc"/>
                                             <outlet property="profileLabel" destination="YVF-gR-zL5" id="v5M-bX-8S7"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="courseCell" id="bDD-pC-B4Y" customClass="CoursesTableViewCell" customModule="AutoLayoutDemo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="186" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bDD-pC-B4Y" id="0kP-jK-48O">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0nt-MQ-qc3">
+                                                    <rect key="frame" x="136.5" y="11.5" width="47" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Final Mark" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZoR-j9-kKb">
+                                                    <rect key="frame" x="226" y="11" width="79" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4X-Q3-nqc">
+                                                    <rect key="frame" x="15" y="11.5" width="105" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="V4X-Q3-nqc" firstAttribute="top" secondItem="0kP-jK-48O" secondAttribute="topMargin" constant="0.5" id="685-ha-7jv"/>
+                                                <constraint firstItem="ZoR-j9-kKb" firstAttribute="centerY" secondItem="0kP-jK-48O" secondAttribute="centerY" id="9Qv-1Z-Soh"/>
+                                                <constraint firstItem="ZoR-j9-kKb" firstAttribute="top" secondItem="0kP-jK-48O" secondAttribute="topMargin" id="F2I-Ah-g8Z"/>
+                                                <constraint firstItem="ZoR-j9-kKb" firstAttribute="trailing" secondItem="0kP-jK-48O" secondAttribute="trailingMargin" id="LI4-U9-xBN"/>
+                                                <constraint firstItem="V4X-Q3-nqc" firstAttribute="centerY" secondItem="0kP-jK-48O" secondAttribute="centerY" id="SET-je-37w"/>
+                                                <constraint firstItem="V4X-Q3-nqc" firstAttribute="leading" secondItem="0kP-jK-48O" secondAttribute="leadingMargin" id="Vt4-Dy-mPF"/>
+                                                <constraint firstItem="0nt-MQ-qc3" firstAttribute="centerY" secondItem="0kP-jK-48O" secondAttribute="centerY" id="mYI-HY-Sp6"/>
+                                                <constraint firstItem="0nt-MQ-qc3" firstAttribute="centerX" secondItem="0kP-jK-48O" secondAttribute="centerX" id="nVj-US-AXi"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="courseNameLabel" destination="V4X-Q3-nqc" id="OLp-6R-hno"/>
+                                            <outlet property="creditsLabel" destination="0nt-MQ-qc3" id="F1d-85-qb0"/>
+                                            <outlet property="finalMarkLabel" destination="ZoR-j9-kKb" id="rb2-5P-qon"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

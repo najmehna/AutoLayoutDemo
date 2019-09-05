@@ -29,6 +29,12 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             let myDataManager = FirebaseAuthManager()
             let myDict = createDataDict()
         myDataManager.addCourseDetails(dataDict: myDict)
+            let myAlert = UIAlertController(title: "Updating the database", message: "Data added", preferredStyle: .alert)
+            let myAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            myAlert.addAction(myAction)
+            present(myAlert, animated: true, completion: {
+                 self.clearFields()
+            })
         } else{
             showAlert("Please do not leave any fields empty.")
         }
@@ -40,6 +46,16 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         picker.allowsEditing = true
         picker.delegate = self
         present(picker, animated:true)
+    }
+    
+    func clearFields(){
+        courseTextField.text = ""
+        creditsTextField.text = ""
+        finalMarkTextField.text = ""
+        DispatchQueue.main.async {
+             self.courseTextField.becomeFirstResponder()
+        }
+       
     }
     func createDataDict()-> [String: Any]{
         let myDict = ["courseName" : courseTextField.text!, "courseCredit" : creditsTextField.text!, "finalMark" : finalMarkTextField.text!]
@@ -67,16 +83,12 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         picker.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
-  
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         courseTextField.delegate = self
         creditsTextField.delegate = self
         finalMarkTextField.delegate = self
     }
-    
     
     /*
      // MARK: - Navigation
@@ -87,6 +99,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
      // Pass the selected object to the new view controller.
      }
      */
+    
     func showAlert(_ message: String){
         let myAlert = UIAlertController(title: "Checking the input fields", message: message, preferredStyle: .alert)
         let myAction = UIAlertAction(title: "OK", style: .default, handler: nil)

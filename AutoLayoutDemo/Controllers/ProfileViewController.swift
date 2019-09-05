@@ -10,20 +10,53 @@ import UIKit
 
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
    
-    var profiles: [Profile] = Array()
+    var profiles: [Profile] = []{
+        didSet{
+            profileRules = profiles.count > courses.count
+            min = profiles.count < courses.count ? profiles.count : courses.count
+            print("From profile didset: \(min)")
+        }
+    }
+    var courses: [Course] = []{
+        didSet{
+            profileRules = profiles.count > courses.count
+            min = profiles.count < courses.count ? profiles.count : courses.count
+            print("From courses didset: \(min)")
+        }
+    }
+    var min = 0
+    var profileRules = false
     
     @IBOutlet weak var profileTableView: UITableView!
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return profiles.count
+        return profiles.count + courses.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = profileTableView.dequeueReusableCell(withIdentifier: "cell") as! CustomTableViewCell
-        cell.setValues(profile: profiles[indexPath.row])
-        
-        return cell
+        var myCell : UITableViewCell
+        print(min)
+        if indexPath.row / 2 < min{
+            if indexPath.row % 2 == 0 {
+                let cell = profileTableView.dequeueReusableCell(withIdentifier: "cell") as! CustomTableViewCell
+                cell.setValues(profile: profiles[indexPath.row / 2])
+                myCell = cell
+            }else {
+                let cell = profileTableView.dequeueReusableCell(withIdentifier: "courseCell") as! CoursesTableViewCell
+                cell.setValues(course: courses[indexPath.row / 2])
+                myCell = cell
+                
+            }} else if profileRules {
+            let cell = profileTableView.dequeueReusableCell(withIdentifier: "cell") as! CustomTableViewCell
+            cell.setValues(profile: profiles[indexPath.row / 2])
+            myCell = cell
+        } else{
+            let cell = profileTableView.dequeueReusableCell(withIdentifier: "courseCell") as! CoursesTableViewCell
+            cell.setValues(course: courses[indexPath.row / 2])
+            myCell = cell
+        }
+        return myCell
     }
     func loadProfiles(){
         let myManager = FirebaseAuthManager()
@@ -40,18 +73,36 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.profiles.append(myCell)
                 }
             }
-            DispatchQueue.main.async {
-                self.profileTableView.reloadData()
-            }
+            self.profileTableView.reloadData()
+        
         })
     }
-    
+    func loadCourses(){
+        let myManager = FirebaseAuthManager()
+        var myCell = Course(courseName: "", credits: "", finalMark: "")
+        myManager.getCoursesData(completionBlock: {success , myDict in
+            print(myDict)
+            for i in myDict.keys{
+                if let values = myDict[i] as? Dictionary<String, Any>{
+                    let courseName = values["courseName"] as! String
+                    let courseCredits = values["courseCredit"] as! String
+                    let finalMark = values["finalMark"] as! String
+                    myCell = Course(courseName: courseName, credits: courseCredits, finalMark: finalMark)
+                    self.courses.append(myCell)
+                }
+            }
+            self.profileTableView.reloadData()
+            
+        })
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         profileTableView.delegate = self
         profileTableView.dataSource = self
         loadProfiles()
-
+        loadCourses()
+        
         // Do any additional setup after loading the view.
     }
     

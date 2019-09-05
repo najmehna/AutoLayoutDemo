@@ -21,9 +21,8 @@ struct Profile{
 //       // image = myimage
 //    }
 }
-
 struct Course{
     var courseName: String
-    var credits : Int
-    var finalMark : Int
+    var credits: String
+    var finalMark: String
 }
