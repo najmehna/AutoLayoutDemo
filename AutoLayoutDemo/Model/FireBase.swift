@@ -7,7 +7,6 @@
 //
 
 import Foundation
-//import FirebaseAuth
 import Firebase
 
 class FirebaseAuthManager {
@@ -34,11 +33,7 @@ class FirebaseAuthManager {
     }
     
     func updateCourseDetails(dataDict: [String:Any], completionBlock: @escaping (_ success: Bool)->Void){
-//        guard let key = ref.child("courses").childByAutoId().key else { return }
-//        let childUpdates = ["/courses/\(key)": dataDict]
-//        ref.updateChildValues(childUpdates)
-//        print("The firebase key is \(key)")
-        
+
         self.ref.child("courses").queryOrdered(byChild: "courseName").queryEqual(toValue: dataDict["courseName"]).observeSingleEvent(of: .value) { (snapShot) in
             if let snap = snapShot.value as? [String:Any]{
                 for each in snap{
@@ -50,21 +45,33 @@ class FirebaseAuthManager {
             }
         }
     }
-    func deleteCourse(dataDict: [String:Any],completionBlock: @escaping (_ success: Bool)->Void){
-        
+    
+    func deleteCourse(At key: String,completionBlock: @escaping (_ success: Bool)->Void){
+        self.ref.child("courses").child(key).removeValue { (error, dataRef) in
+            if error != nil {
+                completionBlock(false)
+            }else{
+                completionBlock(true)
+            }
+        }
     }
     
-    func deleteProfile(dataDict: [String:Any],completionBlock: @escaping (_ success: Bool)->Void){
-        
+    func deleteProfile(At key: String,completionBlock: @escaping (_ success: Bool)->Void){
+        self.ref.child("users").child(key).removeValue { (error, dataRef) in
+            if error != nil {
+                completionBlock(false)
+            }else{
+                completionBlock(true)
+            }
+        }
     }
+    
     func signIn(userName: String , password:String, completionBlock: @escaping (_ success: Bool)-> Void){
-        Auth.auth().signIn(withEmail: userName, password: password){(authResult, error)
-            in
+        Auth.auth().signIn(withEmail: userName, password: password){(authResult, error) in
             if let user = authResult?.user{
                 print(user)
                 completionBlock(true)
             }else{completionBlock(false)
-                
             }
         }
     }
@@ -83,6 +90,7 @@ class FirebaseAuthManager {
             completionBlock(false, postDict)
         }
     }
+    
     func getCoursesData(completionBlock:@escaping (_ success: Bool, _ snapshot: [String:Any])->Void){
         // let uid = Auth.auth().currentUser?.uid
         var postDict : [String : Any] = [:]
@@ -97,5 +105,4 @@ class FirebaseAuthManager {
             completionBlock(false, postDict)
         }
     }
-
 }

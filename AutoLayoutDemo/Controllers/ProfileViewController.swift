@@ -49,75 +49,101 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 
             }} else if profileRules {
             let cell = profileTableView.dequeueReusableCell(withIdentifier: "cell") as! CustomTableViewCell
-            cell.setValues(profile: profiles[indexPath.row / 2])
+            cell.setValues(profile: profiles[indexPath.row - min])
             myCell = cell
         } else{
             let cell = profileTableView.dequeueReusableCell(withIdentifier: "courseCell") as! CoursesTableViewCell
-            cell.setValues(course: courses[indexPath.row / 2])
+            cell.setValues(course: courses[indexPath.row - min])
             myCell = cell
         }
         return myCell
     }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func getIndex(ofProfile: Bool, At indexpathRow: Int)-> Int{
+        var index = 0
+        if ofProfile{
+        if indexpathRow / 2 < self.min{
+            index = indexpathRow / 2
+        } else{
+            index = indexpathRow - self.min
+            }}else {
+            if indexpathRow / 2 < self.min{
+                index = indexpathRow / 2
+            } else{
+                index = indexpathRow - self.min
+            }
+        }
+        return index
+    }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
-            let myManager = FirebaseAuthManager()
+           let myManager = FirebaseAuthManager()
             if tableView.cellForRow(at: indexPath) is CustomTableViewCell{
-                myManager.deleteProfile(dataDict: profiles[indexPath.row / 2].getDict()) { success in
+                let index = getIndex(ofProfile: true, At: indexPath.row)
+                myManager.deleteProfile(At: profiles[index].getKey()) { success in
                     if success{
                         print("Item deleted in firebase")
-                        self.profiles.remove(at: indexPath.row / 2)
                     }else{
                         print("failed to delete item in firebase")
                     }
                 }
             }else{
-                myManager.deleteCourse(dataDict: profiles[indexPath.row / 2].getDict()) { success in
+                let index = getIndex(ofProfile: false, At: indexPath.row)
+                myManager.deleteCourse(At: courses[index].getKey()) { success in
                     if success{
                         print("Item deleted in firebase")
-                        self.courses.remove(at: indexPath.row / 2)
                     }else{
                         print("failed to delete item in firebase")
                     }
                 }
             }
-            profileTableView.reloadData()
         }
     }
+    
     func loadProfiles(){
         let myManager = FirebaseAuthManager()
-        var myCell = Profile(name: "",email: "",phone: "", gender: true)
-        myManager.getUsersData(completionBlock: {success , myDict in
-            print(myDict)
-            for i in myDict.keys{
-                if let values = myDict[i] as? Dictionary<String, Any>{
-                let myName = values["name"] as! String
-                let myEmail = values["email"] as! String
-                let myPhone = values["phoneNumber"] as! String
-                let myGender = values["gender"] as! Bool
-                myCell = Profile(name: myName, email: myEmail, phone: myPhone, gender: myGender)
-                self.profiles.append(myCell)
+        var myCell = Profile(name: "",email: "",phone: "", gender: true, key: "")
+            myManager.getUsersData(completionBlock: {success , myDict in
+                print(myDict)
+                self.profiles = []
+                for i in myDict.keys{
+                    if let values = myDict[i] as? Dictionary<String, Any>{
+                        let myName = values["name"] as! String
+                        let myEmail = values["email"] as! String
+                        let myPhone = values["phoneNumber"] as! String
+                        let myGender = values["gender"] as! Bool
+                        let myKey = i
+                        myCell = Profile(name: myName, email: myEmail, phone: myPhone, gender: myGender, key: myKey)
+                        self.profiles.append(myCell)
+                    }
                 }
-            }
-            self.profileTableView.reloadData()
+                DispatchQueue.main.async {
+                    self.profileTableView.reloadData()
+                }
+            })
         
-        })
     }
     func loadCourses(){
         let myManager = FirebaseAuthManager()
-        var myCell = Course(courseName: "", credits: "", finalMark: "")
-        myManager.getCoursesData(completionBlock: {success , myDict in
+        var myCell = Course(courseName: "", credits: "", finalMark: "", key: "")
+            myManager.getCoursesData(completionBlock: {success , myDict in
             print(myDict)
+            self.courses = []
             for i in myDict.keys{
-                if let values = myDict[i] as? Dictionary<String, Any>{
-                    let courseName = values["courseName"] as! String
-                    let courseCredits = values["courseCredit"] as! String
-                    let finalMark = values["finalMark"] as! String
-                    myCell = Course(courseName: courseName, credits: courseCredits, finalMark: finalMark)
-                    self.courses.append(myCell)
-                }
+            if let values = myDict[i] as? Dictionary<String, Any>{
+                let courseName = values["courseName"] as! String
+                let courseCredits = values["courseCredit"] as! String
+                let finalMark = values["finalMark"] as! String
+                let myKey = i
+                myCell = Course(courseName: courseName, credits: courseCredits, finalMark: finalMark, key: myKey)
+                self.courses.append(myCell)
             }
-            self.profileTableView.reloadData()
-            
+            }
+            DispatchQueue.main.async {
+                self.profileTableView.reloadData()
+            }
         })
     }
 
@@ -131,7 +157,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         // Do any additional setup after loading the view.
     }
     
-
+//    override func viewDidAppear(_ animated: Bool) {
+//        loadProfiles()
+//        loadCourses()
+//    }
     /*
     // MARK: - Navigation
 

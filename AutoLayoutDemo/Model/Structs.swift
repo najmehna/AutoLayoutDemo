@@ -14,7 +14,11 @@ struct Profile{
     var email: String
     var phone: String
     var gender: Bool
+    var key: String
     //var image: UIImage
+    func getKey() -> String{
+        return key
+    }
     func getDict()-> [String:Any]{
         let myDict: [String:Any] = ["name":self.name, "email":self.email, "phoneNumber" : self.phone, "gender": self.gender]
         return myDict
@@ -28,6 +32,10 @@ struct Course{
     var courseName: String
     var credits: String
     var finalMark: String
+    var key: String
+    func getKey() -> String{
+        return key
+    }
     func getDict()->[String:Any]{
         let myDict: [String:Any] = ["courseName":self.courseName, "courseCredit": self.credits, "finalMark" : self.finalMark]
         return myDict
