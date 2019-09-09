@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AutoLayoutDemo/Controllers/ProfileViewController.swift"
-            timestampString = "589431383.773211"
+            timestampString = "589740224.4995919"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "loadCourses()"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "searchCoursesDB(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,13 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AutoLayoutDemo/Controllers/ProfileViewController.swift"
-            timestampString = "589431383.773918"
+            timestampString = "589740224.500031"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
-            landmarkName = "ProfileViewController"
-            landmarkType = "3">
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "searchCoursesDB(for:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

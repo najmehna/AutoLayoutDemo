@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
    
     var profiles: [Profile] = []{
         didSet{
@@ -27,8 +27,66 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     var min = 0
     var profileRules = false
     
-    @IBOutlet weak var profileTableView: UITableView!
     
+    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var profileTableView: UITableView!
+    @IBAction func searchBtnClicked(_ sender: UIButton) {
+        guard let searchText = searchTextField.text else{return}
+        if searchText != ""{
+            searchUserDB(for: searchText)
+            searchCoursesDB(for: searchText)
+        }
+    }
+    @IBAction func cancelBtnClicked(_ sender: UIButton) {
+        searchTextField.text = ""
+        loadProfiles()
+        loadCourses()
+    }
+    func searchCoursesDB(for text : String){
+        let myManager = FirebaseAuthManager()
+        var myCell = Course(courseName: "", credits: "", finalMark: "", key: "")
+        myManager.searchCoursesDataBase(for: text, completionBlock: { (success, myDict) in
+            print(myDict)
+            self.courses = []
+            for i in myDict.keys{
+                if let values = myDict[i] as? Dictionary<String, Any>{
+                    let courseName = values["courseName"] as! String
+                    let courseCredits = values["courseCredit"] as! String
+                    let finalMark = values["finalMark"] as! String
+                    let myKey = i
+                    myCell = Course(courseName: courseName, credits: courseCredits, finalMark: finalMark, key: myKey)
+                    self.courses.append(myCell)
+                }
+            }
+            DispatchQueue.main.async {
+                self.profileTableView.reloadData()
+            }
+        })
+    }
+    func searchUserDB(for text: String){
+        let myManager = FirebaseAuthManager()
+        var myCell = Profile(name: "",email: "",phone: "", gender: true, key: "")
+        myManager.searchUsersDataBase(for: text) { (success, snap) in
+            self.courses = []
+            self.profiles = []
+            if success{
+                for key in snap.keys{
+                    if let values = snap[key] as? Dictionary<String, Any>{
+                    let myName = values["name"] as! String
+                    let myEmail = values["email"] as! String
+                    let myPhone = values["phoneNumber"] as! String
+                    let myGender = values["gender"] as! Bool
+                    let myKey = key
+                    myCell = Profile(name: myName, email: myEmail, phone: myPhone, gender: myGender, key: myKey)
+                    self.profiles.append(myCell)
+                }
+                }
+            }
+            DispatchQueue.main.async {
+                self.profileTableView.reloadData()
+            }
+        }
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return profiles.count + courses.count
@@ -58,9 +116,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         return myCell
     }
+    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    
     func getIndex(ofProfile: Bool, At indexpathRow: Int)-> Int{
         var index = 0
         if ofProfile{
@@ -77,6 +137,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         return index
     }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
            let myManager = FirebaseAuthManager()
@@ -85,6 +146,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 myManager.deleteProfile(At: profiles[index].getKey()) { success in
                     if success{
                         print("Item deleted in firebase")
+                        self.loadProfiles()
                     }else{
                         print("failed to delete item in firebase")
                     }
@@ -93,6 +155,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 let index = getIndex(ofProfile: false, At: indexPath.row)
                 myManager.deleteCourse(At: courses[index].getKey()) { success in
                     if success{
+                        self.loadCourses()
                         print("Item deleted in firebase")
                     }else{
                         print("failed to delete item in firebase")
@@ -151,10 +214,16 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         profileTableView.delegate = self
         profileTableView.dataSource = self
+        searchTextField.delegate = self
         loadProfiles()
         loadCourses()
         
         // Do any additional setup after loading the view.
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 //    override func viewDidAppear(_ animated: Bool) {

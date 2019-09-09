@@ -79,13 +79,10 @@ class FirebaseAuthManager {
     func getUsersData(completionBlock:@escaping (_ success: Bool, _ snapshot: [String:Any])->Void){
         // let uid = Auth.auth().currentUser?.uid
         var postDict : [String : Any] = [:]
-
-        ref.child("users").observe(DataEventType.value, with: { (snapshot) in
+        ref.child("users").observeSingleEvent(of: .value, with: { (snapshot) in
             postDict = snapshot.value as? [String : Any] ?? [:]
             completionBlock(true,postDict)
-            // print(postDict)
-        })
-        { (error) in
+        }) { (error) in
             print(error.localizedDescription)
             completionBlock(false, postDict)
         }
@@ -94,15 +91,64 @@ class FirebaseAuthManager {
     func getCoursesData(completionBlock:@escaping (_ success: Bool, _ snapshot: [String:Any])->Void){
         // let uid = Auth.auth().currentUser?.uid
         var postDict : [String : Any] = [:]
-        
-        ref.child("courses").observe(DataEventType.value, with: { (snapshot) in
+        ref.child("courses").observeSingleEvent(of: .value, with: { (snapshot) in
             postDict = snapshot.value as? [String : Any] ?? [:]
             completionBlock(true,postDict)
-            // print(postDict)
-        })
-        { (error) in
+        }) { (error) in
             print(error.localizedDescription)
             completionBlock(false, postDict)
         }
     }
+    
+    func nextLetter(_ letter: String) -> String? {
+        
+        // Check if string is build from exactly one Unicode scalar:
+        guard let uniCode = UnicodeScalar(letter) else {
+            return nil
+        }
+        return String(UnicodeScalar(uniCode.value + 1)!)
+    }
+    
+    func searchUsersDataBase(for text: String, completionBlock:@escaping (_ success: Bool, _ snapshot: [String:Any])->Void){
+        // let uid = Auth.auth().currentUser?.uid
+        var postDict : [String : Any] = [:]
+        var mytext = text
+        var finish = String(text.last!)
+        finish = nextLetter(finish)!
+        mytext.removeLast()
+        mytext = mytext + finish
+        
+        print("MY TEXT IS:>>>>>>: " + mytext)
+        print("The search text ending is: "
+            +  text + "\u{fffd}")
+        //text + "\u{fffd}"
+        ref.child("users").queryOrdered(byChild: "name").queryStarting(atValue: text).queryEnding(atValue: mytext).observeSingleEvent(of: .value, with: { (snapshot) in
+            postDict = snapshot.value as? [String : Any] ?? [:]
+            completionBlock(true, postDict)
+        }) { (error) in
+            print(error.localizedDescription)
+            completionBlock(false, postDict)
+        }
+    }
+    
+    func searchCoursesDataBase(for text: String, completionBlock:@escaping (_ success: Bool, _ snapshot: [String:Any])->Void){
+        // let uid = Auth.auth().currentUser?.uid
+        var postDict : [String : Any] = [:]
+        var mytext = text
+        var finish = String(text.last!)
+        finish = nextLetter(finish)!
+        mytext.removeLast()
+        mytext = mytext + finish
+        
+        print("MY TEXT IS:>>>>>>: " + mytext)
+        print("The search text ending is: "
+            +  text + "\u{fffd}")
+        ref.child("courses").queryOrdered(byChild: "courseName").queryStarting(atValue: text).queryEnding(atValue: mytext).observeSingleEvent(of: .value, with: { (snapshot) in
+            postDict = snapshot.value as? [String : Any] ?? [:]
+            completionBlock(true, postDict)
+        }) { (error) in
+            print(error.localizedDescription)
+            completionBlock(false, postDict)
+        }
+      }
 }

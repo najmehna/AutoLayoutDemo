@@ -303,7 +303,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Doz-gs-DFg">
-                                <rect key="frame" x="0.0" y="20" width="320" height="499"/>
+                                <rect key="frame" x="0.0" y="70" width="320" height="449"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="158" id="Vth-XW-Kcr" customClass="CustomTableViewCell" customModule="AutoLayoutDemo" customModuleProvider="target">
@@ -416,23 +416,55 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cxg-HI-pyn">
+                                <rect key="frame" x="16" y="32" width="184.5" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gou-kg-8kC">
+                                <rect key="frame" x="278" y="32" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="hSR-bO-lKs"/>
+                                </constraints>
+                                <state key="normal" title="X"/>
+                                <connections>
+                                    <action selector="cancelBtnClicked:" destination="coG-6m-Atj" eventType="touchUpInside" id="jD8-wy-VPk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTi-Zg-Jwq">
+                                <rect key="frame" x="208.5" y="32" width="61.5" height="30"/>
+                                <state key="normal" title="Search"/>
+                                <connections>
+                                    <action selector="searchBtnClicked:" destination="coG-6m-Atj" eventType="touchUpInside" id="zNb-5b-mia"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="r5k-bO-EZ4" firstAttribute="leading" secondItem="QKc-ZC-HDS" secondAttribute="leading" id="4Yc-o0-fU0"/>
+                            <constraint firstItem="Gou-kg-8kC" firstAttribute="top" secondItem="QKc-ZC-HDS" secondAttribute="top" constant="12" id="4dO-ZC-uAl"/>
+                            <constraint firstItem="Gou-kg-8kC" firstAttribute="leading" secondItem="kTi-Zg-Jwq" secondAttribute="trailing" constant="8" id="8H3-Fn-MTC"/>
+                            <constraint firstItem="kTi-Zg-Jwq" firstAttribute="leading" secondItem="cxg-HI-pyn" secondAttribute="trailing" constant="8" id="Hwc-Fa-JYq"/>
                             <constraint firstAttribute="bottom" secondItem="r5k-bO-EZ4" secondAttribute="bottom" id="O1b-mq-VbE"/>
-                            <constraint firstItem="Doz-gs-DFg" firstAttribute="top" secondItem="QKc-ZC-HDS" secondAttribute="top" id="QfS-pH-Vj7"/>
+                            <constraint firstItem="cxg-HI-pyn" firstAttribute="top" secondItem="QKc-ZC-HDS" secondAttribute="top" constant="12" id="Pep-Ff-xqW"/>
+                            <constraint firstItem="Doz-gs-DFg" firstAttribute="top" secondItem="kTi-Zg-Jwq" secondAttribute="bottom" constant="8" id="Vdp-77-k2I"/>
                             <constraint firstItem="r5k-bO-EZ4" firstAttribute="top" secondItem="4hC-ai-FHd" secondAttribute="top" id="Y64-jc-0fd"/>
                             <constraint firstItem="Doz-gs-DFg" firstAttribute="leading" secondItem="QKc-ZC-HDS" secondAttribute="leading" id="dRa-Pa-Z75"/>
+                            <constraint firstItem="QKc-ZC-HDS" firstAttribute="trailing" secondItem="Gou-kg-8kC" secondAttribute="trailing" constant="12" id="dWn-fS-fuM"/>
                             <constraint firstItem="r5k-bO-EZ4" firstAttribute="trailing" secondItem="QKc-ZC-HDS" secondAttribute="trailing" id="fr0-u5-xc3"/>
                             <constraint firstItem="Doz-gs-DFg" firstAttribute="trailing" secondItem="QKc-ZC-HDS" secondAttribute="trailing" id="jf1-eR-lyk"/>
                             <constraint firstItem="Doz-gs-DFg" firstAttribute="bottom" secondItem="QKc-ZC-HDS" secondAttribute="bottom" id="lui-A9-dRx"/>
+                            <constraint firstItem="kTi-Zg-Jwq" firstAttribute="top" secondItem="QKc-ZC-HDS" secondAttribute="top" constant="12" id="pIx-ON-oiB"/>
+                            <constraint firstItem="kTi-Zg-Jwq" firstAttribute="width" secondItem="cxg-HI-pyn" secondAttribute="width" multiplier="1/3" id="qje-o0-dfs"/>
+                            <constraint firstItem="cxg-HI-pyn" firstAttribute="leading" secondItem="QKc-ZC-HDS" secondAttribute="leading" constant="16" id="sly-mr-uhc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QKc-ZC-HDS"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" id="6c8-2S-2Lh"/>
                     <connections>
                         <outlet property="profileTableView" destination="Doz-gs-DFg" id="b12-mD-IJT"/>
+                        <outlet property="searchTextField" destination="cxg-HI-pyn" id="fho-44-9wu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V0l-Kx-JgE" userLabel="First Responder" sceneMemberID="firstResponder"/>
