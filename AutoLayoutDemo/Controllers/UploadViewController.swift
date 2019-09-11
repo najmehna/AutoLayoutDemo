@@ -41,7 +41,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         let myImage = uploadImageView.image ?? UIImage(named: "PinkBackground")
         let myImageData = myImage?.jpegData(compressionQuality: 1)
         let myStorageManager = StorageManager()
-        print(UserDefaults.standard.string(forKey: "userName"))
+        //print(UserDefaults.standard.string(forKey: "userName"))
         myStorageManager.uploadNewImage(userID: UserDefaults.standard.string(forKey: "userName")! + ".jpg", data: myImageData!)
         
     }

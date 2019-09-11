@@ -8,24 +8,38 @@
 
 import UIKit
 
+let lightNotificationKey = "co.seanallen.lightSide"
+let darkNotificationKey = "co.seanallen.darkSide"
 
+//I'm commenting out the code from delegation method ### to put in the notification method
 class SelectionViewController: UIViewController {
-    var selectCharDelegate: selectCharacter?
-    
+    //### var selectCharDelegate: selectCharacter?
+    let lightNotif = Notification.Name(lightNotificationKey)
+    let darkNotif = Notification.Name(darkNotificationKey)
     
 
     @IBAction func LukeBtnClicked(_ sender: UIButton) {
-        let myName = "Luke"
+        NotificationCenter.default.post(name: lightNotif, object: nil)
+        dismiss(animated: true, completion: nil)
+
+/* ###   let myName = "Luke"
         let myImage = UIImage(named: myName) ?? UIImage(named: "pinkBackground")!
         selectCharDelegate?.didSelect(image: myImage, name: myName, color: .red)
-        dismiss(animated: true, completion: nil)
+         dismiss(animated: true, completion: nil)  ### */
     }
+    
+    
     @IBAction func DarthBtnClicked(_ sender: UIButton) {
-        let myName = "Darth"
+        
+        NotificationCenter.default.post(name: darkNotif, object: nil)
+        dismiss(animated: true, completion: nil)
+       /* ### let myName = "Darth"
         let myImage = UIImage(named: myName) ?? UIImage(named: "pinkBackground")!
         selectCharDelegate?.didSelect(image: myImage, name: myName, color: .green)
-        dismiss(animated: true, completion: nil)
+ dismiss(animated: true, completion: nil) ### */
     }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
