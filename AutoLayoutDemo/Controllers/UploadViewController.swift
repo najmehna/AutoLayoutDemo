@@ -37,6 +37,14 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var creditsTextField: UITextField!
     @IBOutlet weak var finalMarkTextField: UITextField!
     
+    @IBAction func uploadImageBtnClicked(_ sender: UIButton) {
+        let myImage = uploadImageView.image ?? UIImage(named: "PinkBackground")
+        let myImageData = myImage?.jpegData(compressionQuality: 1)
+        let myStorageManager = StorageManager()
+        print(UserDefaults.standard.string(forKey: "userName"))
+        myStorageManager.uploadNewImage(userID: UserDefaults.standard.string(forKey: "userName")! + ".jpg", data: myImageData!)
+        
+    }
     @IBOutlet weak var cameraButton: UIButton!{
         didSet{
             cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
@@ -76,6 +84,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
        
     }
+    
     func createDataDict()-> [String: Any]{
         let myDict = ["courseName" : courseTextField.text!, "courseCredit" : creditsTextField.text!, "finalMark" : finalMarkTextField.text!]
         return myDict

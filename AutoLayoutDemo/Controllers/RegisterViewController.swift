@@ -62,7 +62,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                     let myDict = self.createsignUpDict()
                     signUpManager.addUserDetails(dataDict:myDict)
                     message = "User was sucessfully created."
-                    UserDefaults.standard.set(self.emailTextField.text!, forKey: "username")
+                    UserDefaults.standard.set(self.emailTextField.text!, forKey: "userName")
                     UserDefaults.standard.set(true, forKey: "isLoggedIn")
                     self.performSegue(withIdentifier: "goToHomePage", sender: self)
                 } else {

@@ -70,7 +70,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         print("Login success for \(userName)")
                         self.userNameTextField.resignFirstResponder()
                         self.passwordTextField.resignFirstResponder()
-                        UserDefaults.standard.set(self.userNameTextField.text!, forKey: "username")
+                        UserDefaults.standard.set(self.userNameTextField.text!, forKey: "userName")
                         UserDefaults.standard.set(true, forKey: "isLoggedIn")
                         self.performSegue(withIdentifier: "goToHomePage", sender: self)
                     }else {

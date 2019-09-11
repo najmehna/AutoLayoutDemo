@@ -13,9 +13,13 @@
 		F38C885C230C570F00721152 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38C885A230C570F00721152 /* Main.storyboard */; };
 		F38C885E230C571200721152 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F38C885D230C571200721152 /* Assets.xcassets */; };
 		F38C8861230C571200721152 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38C885F230C571200721152 /* LaunchScreen.storyboard */; };
+		F3A71A8B2329524C00C5B6BE /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A71A8A2329524C00C5B6BE /* SelectionViewController.swift */; };
+		F3A71A8D2329525F00C5B6BE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A71A8C2329525F00C5B6BE /* BaseViewController.swift */; };
+		F3A71A8F232953B900C5B6BE /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A71A8E232953B900C5B6BE /* Protocols.swift */; };
 		F3BB1E5A230EF33B00FE4CEE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F3BB1E59230EF33B00FE4CEE /* GoogleService-Info.plist */; };
 		F3BB1E632314263C00FE4CEE /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BB1E622314263C00FE4CEE /* RegisterViewController.swift */; };
 		F3C7892F232029E200B634FB /* CoursesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C7892E232029E200B634FB /* CoursesTableViewCell.swift */; };
+		F3E6207F2326BDF30081BE32 /* storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E6207E2326BDF30081BE32 /* storage.swift */; };
 		F3EA4DA42316D08E000F5DA8 /* FireBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EA4DA32316D08E000F5DA8 /* FireBase.swift */; };
 		F3EA4DA623171306000F5DA8 /* ValidateFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EA4DA523171306000F5DA8 /* ValidateFuncs.swift */; };
 		F3EA4DA82318169D000F5DA8 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EA4DA72318169D000F5DA8 /* UploadViewController.swift */; };
@@ -37,10 +41,14 @@
 		F38C885D230C571200721152 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F38C8860230C571200721152 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F38C8862230C571200721152 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3A71A8A2329524C00C5B6BE /* SelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionViewController.swift; sourceTree = "<group>"; };
+		F3A71A8C2329525F00C5B6BE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		F3A71A8E232953B900C5B6BE /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		F3BB1E59230EF33B00FE4CEE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F3BB1E5B230EF48400FE4CEE /* Private */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Private; path = Pods/FirebaseCore/Firebase/Core/Private; sourceTree = "<group>"; };
 		F3BB1E622314263C00FE4CEE /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F3C7892E232029E200B634FB /* CoursesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTableViewCell.swift; sourceTree = "<group>"; };
+		F3E6207E2326BDF30081BE32 /* storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = storage.swift; sourceTree = "<group>"; };
 		F3EA4DA32316D08E000F5DA8 /* FireBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBase.swift; sourceTree = "<group>"; };
 		F3EA4DA523171306000F5DA8 /* ValidateFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateFuncs.swift; sourceTree = "<group>"; };
 		F3EA4DA72318169D000F5DA8 /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +134,8 @@
 				F3BB1E622314263C00FE4CEE /* RegisterViewController.swift */,
 				F3EA4DA72318169D000F5DA8 /* UploadViewController.swift */,
 				F3EA4DD2231842E8000F5DA8 /* ProfileViewController.swift */,
+				F3A71A8A2329524C00C5B6BE /* SelectionViewController.swift */,
+				F3A71A8C2329525F00C5B6BE /* BaseViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -136,6 +146,8 @@
 				F3EA4DA32316D08E000F5DA8 /* FireBase.swift */,
 				F3EA4DA523171306000F5DA8 /* ValidateFuncs.swift */,
 				F3EA4DCE231840D1000F5DA8 /* Structs.swift */,
+				F3E6207E2326BDF30081BE32 /* storage.swift */,
+				F3A71A8E232953B900C5B6BE /* Protocols.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -299,8 +311,10 @@
 			files = (
 				F3C7892F232029E200B634FB /* CoursesTableViewCell.swift in Sources */,
 				F3EA4DCD23183F85000F5DA8 /* CustomTableViewCell.swift in Sources */,
+				F3E6207F2326BDF30081BE32 /* storage.swift in Sources */,
 				F3EA4DCF231840D1000F5DA8 /* Structs.swift in Sources */,
 				F3F43714230D8F9100B7B349 /* LoginViewController.swift in Sources */,
+				F3A71A8D2329525F00C5B6BE /* BaseViewController.swift in Sources */,
 				F3EA4DA82318169D000F5DA8 /* UploadViewController.swift in Sources */,
 				F3BB1E632314263C00FE4CEE /* RegisterViewController.swift in Sources */,
 				F38C8859230C570F00721152 /* HomeViewController.swift in Sources */,
@@ -309,6 +323,8 @@
 				F3EA4DA42316D08E000F5DA8 /* FireBase.swift in Sources */,
 				F3F43716230DA3EB00B7B349 /* MapViewController.swift in Sources */,
 				F3EA4DA623171306000F5DA8 /* ValidateFuncs.swift in Sources */,
+				F3A71A8B2329524C00C5B6BE /* SelectionViewController.swift in Sources */,
+				F3A71A8F232953B900C5B6BE /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
